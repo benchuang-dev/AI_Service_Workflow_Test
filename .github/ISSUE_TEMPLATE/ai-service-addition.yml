@@ -59,7 +59,7 @@ body:
     id: service_ids
     attributes:
       label: PID / EID
-      description: Provide every service id and event id. Use Unknown when PM is unsure.
+      description: Provide every official service id and event id. Do not include temporary development-only ids.
       value: |
         pid:
 
@@ -67,7 +67,7 @@ body:
         -
 
         Does this replace an old eid? Yes / No / Unknown:
-        Old eid compatibility required? Yes / No / Unknown:
+        Old eid compatibility required? Yes / No / Not applicable / Unknown:
         Event display names:
         -
 
@@ -78,17 +78,18 @@ body:
   - type: textarea
     id: api_contract
     attributes:
-      label: API / payload contract
-      description: Provide backend fields, targets, payload examples, defaults, and fallback behavior.
+      label: Backend behavior / settings
+      description: Describe the user-visible backend behavior. Engineering will fill exact endpoint, field, and payload details when needed.
       value: |
-        vca_stat / service status field:
-        service detail endpoint / target:
-        read fields:
-        write fields:
-        write payload example:
-        default value when backend returns empty:
-        backend readiness: Ready / Not ready / Unknown
-        API notes:
+        Service availability:
+        User-visible settings:
+        -
+
+        Default setting values:
+        Setting save behavior:
+        Backend readiness: Ready / Not ready / Unknown
+        Backend / API notes:
+        Unknown / blocker:
     validations:
       required: true
 
@@ -154,7 +155,7 @@ body:
       value: |
         Event list display:
         Timeline display:
-        Timeline icons needed:
+        Timeline icon design / asset purpose:
         Event filter dialog:
         All Events:
         Event export:
@@ -169,13 +170,12 @@ body:
     id: notification_deeplink
     attributes:
       label: Notification / deeplink
-      description: Define push notification, image display, channel naming, and web/app deeplink behavior.
+      description: Define Android push notification, image display, channel naming, and web/app deeplink behavior.
       value: |
         FCM notification name:
         FCM channel name:
         Push image support? Yes / No / Same as reference / Unknown:
         Android deeplink URL:
-        iOS deeplink URL:
         Web entry URL:
         Destination page:
         Notes:
@@ -186,19 +186,25 @@ body:
     id: strings_assets
     attributes:
       label: Strings / assets
-      description: List resource names, source files, languages, and missing items.
+      description: List user-facing copy, translation sources, asset files, intended asset usage, and missing items.
       value: |
-        Required string keys:
+        User-facing copy needed:
         -
 
-        Languages provided:
+        Languages / translation source:
         -
 
         Missing translations:
         -
 
-        Required asset names:
+        Assets / image files provided:
         -
+
+        Intended asset usage:
+        - Service list icon:
+        - Service detail banner:
+        - Setting page image:
+        - Event / timeline icons:
 
         Asset source folder / URL:
         Assets allowed to be placeholder? Yes / No / Unknown:
@@ -265,6 +271,7 @@ body:
         - docs/agent-workflows/ai-service-addition-validation.md
 
         請先做非修改性的盤點，列出本次會碰到的檔案群、事件鏈路、API 風險、素材與多國語缺口。
+        若 issue 只提供使用者視角的後端行為、文字或素材用途，請由工程 review 與程式碼盤點決定實際 endpoint、payload、resource name 與 drawable name。
         確認範圍後再進行實作。
         實作後執行對應 build、static check 或 manual verification，最後產出變更摘要或 change report。
     validations:

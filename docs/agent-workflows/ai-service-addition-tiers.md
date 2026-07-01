@@ -11,7 +11,7 @@
 | Tier | 適用情境 | 主要風險 | 典型驗證 |
 | --- | --- | --- | --- |
 | `Service-only` | 只新增服務介紹、訂閱入口、價格或 deeplink，不新增設定 detail 與事件。 | 服務入口排序、價格/試用、支援 camera 篩選或 deeplink 漏補。 | 服務頁 static check、訂閱入口檢查、deeplink 測試、Java compile。 |
-| `Settings-service` | 新增 `pid`、智慧 AI 設定頁、detail payload 或自訂 Dialog，但沒有新事件。 | API payload、預設值、Phone/Pad 設定頁、深色模式與儲存流程錯誤。 | 設定頁檢查、API request payload 檢查、Phone/Pad UI、Java compile。 |
+| `Settings-service` | 新增 `pid`、智慧 AI 設定頁、detail payload 或自訂 Dialog，但沒有新事件。 | 後端設定行為、預設值、Phone/Pad 設定頁、深色模式與儲存流程錯誤。 | 設定頁檢查、API request payload 檢查、Phone/Pad UI、Java compile。 |
 | `Full-event-service` | 新增 `pid` 與一個或多個 `eid`，包含事件、Timeline、filter、FCM、export 或 deeplink。 | 事件鏈路多處漏補、推播圖片、Timeline icon、filter 回填、多國語與素材缺漏。 | 完整 debug build、事件鏈路 static search、Phone/Pad filter、FCM/deeplink 測試、change report。 |
 
 ## Classification Flow
@@ -30,7 +30,7 @@
 
 4. PM 欄位不完整時，不要猜。
    - 在 issue 的 `Blockers / missing PM info` 標記 missing spec。
-   - 無法判斷 API、事件或支援條件時，先以較高風險處理，但不要實作臆測行為。
+- 無法判斷後端行為、事件或支援條件時，先以較高風險處理，但不要實作臆測行為。
 
 ## Tier 1: Service-only
 
@@ -98,8 +98,8 @@ rg -n "deeplink|mobile_vca|AIService|Vca" app/src/main/java app/src/main/res
 除 `Service-only` 欄位外，PM / 工程還必須補齊：
 
 - 設定頁名稱、排序與入口條件。
-- 每個設定項的顯示文字、選項、預設值與儲存格式。
-- API read/write 欄位、target、payload 範例與空值 fallback。
+- 每個設定項的顯示文字、選項、預設值與儲存行為。
+- 後端是否已支援讀取、儲存與空值 fallback；實際 API read/write 欄位、target、payload 由工程 review 補上。
 - Dialog 樣式參考與深色模式要求。
 - Phone / Pad 是否都要支援。
 
@@ -147,7 +147,7 @@ rg -n "<reference-setting-string>|CustomDialog|InfoDialog" app/src/main/java app
 
 - 每個 `eid` 的動物/物件/聲音類型與顯示文字。
 - 舊 `eid` 是否要保留相容。
-- Timeline `t/m/b` icon 或對應 resource name。
+- Timeline icon 設計、素材檔案或每種事件需要的圖示用途；實際 `t/m/b` resource name 由工程 review 補上。
 - 事件篩選是否拆成多個項目。
 - FCM channel/name、推播圖片與圖片缺失 fallback。
 - Deeplink URL 與目的頁。

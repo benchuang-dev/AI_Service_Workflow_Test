@@ -1,6 +1,6 @@
 # AI Service Addition Validation Workflow
 
-本文件定義 SpotCam 新增付費 AI 方案後的固定驗證與報告規則。目標是避免只有 build pass，卻漏掉 Phone/Pad、API payload、事件列表、Timeline、推播圖片、deeplink、素材或多國語。
+本文件定義 SpotCam 新增付費 AI 方案後的固定驗證與報告規則。目標是避免只有 build pass，卻漏掉 Phone/Pad、後端設定行為、API payload、事件列表、Timeline、推播圖片、deeplink、素材或多國語。
 
 本文件只規範驗證與報告，不代表每次 AI 方案都需要修改所有列出的功能。實際驗證範圍應依 `docs/agent-workflows/ai-service-addition-tiers.md` 的 final tier、issue 內容、參考服務與實際 diff 決定。
 
@@ -9,9 +9,9 @@
 - 驗證必須跟 tier 對齊；`Full-event-service` 不能只用 `Service-only` 的驗證結案。
 - Phone / Pad 預設要對稱檢查；若 issue 指定單端支援，report 要明確寫出。
 - `pid` 是服務/方案 id，`eid` 是事件 id；兩者即使數字相同也不能混用。
-- API 未 ready 時，不用測試結果補洞；應在 blocker / 風險列出缺少資訊。
+- 後端行為或 API 未 ready 時，不用測試結果補洞；應在 blocker / 風險列出缺少資訊。
 - 未跑的驗證要寫 `未執行` 與原因，不可寫成已通過。
-- 缺正式素材或翻譯時，要列出 placeholder resource name 與缺少語言。
+- 缺正式素材或翻譯時，要列出素材用途、placeholder resource name 與缺少語言。
 
 ## Tier 1: Service-only Validation
 
@@ -51,7 +51,7 @@ rg -n "mobile_vca|deeplink|AIService|Vca" app\src\main\java app\src\main\res
 - 智慧 AI 設定頁在符合條件時顯示服務。
 - 設定 detail 頁標題、排序與可見性正確。
 - 設定選項的預設值、summary、Dialog 樣式與儲存行為正確。
-- API write payload 與 issue 範例一致。
+- API write payload 與工程 review 補上的實作規格一致。
 - 缺值或空值 fallback 與 issue 一致。
 - Phone / Pad 都檢查，除非 issue 明確排除。
 - 深色模式沿用既有色票與 selector。
@@ -125,7 +125,7 @@ AI 服務新增 change report 應加入下列矩陣。結果欄位建議使用 `
 | Reference service |  |
 | Phone support | Supported / Not supported / Not applicable |
 | Pad support | Supported / Not supported / Not applicable |
-| API readiness | Ready / Not ready / Unknown |
+| Backend/API readiness | Ready / Not ready / Unknown |
 
 ## AI 服務驗證矩陣
 
@@ -135,7 +135,7 @@ AI 服務新增 change report 應加入下列矩陣。結果欄位建議使用 `
 | Subscription / trial |  |  |
 | Support rule |  |  |
 | Setting page |  |  |
-| API payload |  |  |
+| Backend behavior / API payload |  |  |
 | Event list |  |  |
 | Timeline |  |  |
 | Event filter |  |  |
@@ -157,7 +157,7 @@ AI 服務新增完成後，如需要產出報告，report 必須包含：
 - 分級：`Service-only` / `Settings-service` / `Full-event-service`。
 - 參考 AI 服務與比照依據。
 - 改動摘要。
-- API contract 與支援規則。
+- 後端行為、API contract 與支援規則。
 - 改動檔案表。
 - 驗證命令與實際結果。
 - 手測項目與結果。
@@ -168,7 +168,7 @@ Report 不得捏造：
 
 - 未跑過的 Gradle command。
 - 未執行的實機、emulator、push 或 deeplink 驗證。
-- PM 未提供的 API contract、支援條件或價格。
+- PM 未提供的後端行為、API contract、支援條件或價格。
 - 尚未確認的正式產品名稱、圖示、字串或 firmware 行為。
 
 ## Codex Completion Checklist
