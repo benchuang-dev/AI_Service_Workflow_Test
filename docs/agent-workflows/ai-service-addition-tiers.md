@@ -50,8 +50,8 @@
 - Service type。
 - Reference AI service。
 - `pid`。
-- 和參考服務不同的價格、試用、支援 camera 篩選或 deeplink。
-- 使用者文案與素材用途；語言覆蓋與 resource name 由工程 review / Codex 依固定規則補上。
+- 和參考服務不同的價格、試用、產品限制、帳號限制或 deeplink。
+- 使用者文案與素材用途；固定翻譯來源、語言覆蓋與 resource name 由表單 / 工程 review / Codex 依固定規則補上。
 
 ### Required Discovery
 
@@ -144,8 +144,8 @@ rg -n "<reference-setting-string>|CustomDialog|InfoDialog" app/src/main/java app
 
 - 每個 `eid` 的動物/物件/聲音類型與顯示文字。
 - 舊 `eid` 是否要保留相容。
-- 事件圖片、Timeline icon、推播圖片或 deeplink 是否有本服務特有需求。
-- 翻譯來源 URL、素材用途與缺漏項目；固定語言規則、事件篩選、All Events、export、player title 與 FCM mapping 由工程 review / Codex 推導。
+- 事件圖片、Timeline icon、推播圖片或 deeplink 是否有本服務特有需求，圖片需求統一填在 `Copy / assets`。
+- 素材用途與缺漏項目；固定翻譯來源、語言規則、事件篩選、All Events、export、player title 與 FCM mapping 由工程 review / Codex 推導。
 
 ### Required Discovery
 

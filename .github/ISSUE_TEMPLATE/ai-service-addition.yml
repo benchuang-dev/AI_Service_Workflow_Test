@@ -84,7 +84,7 @@ body:
     id: behavior_settings
     attributes:
       label: New behavior / settings
-      description: Describe only new user-visible behavior, settings, defaults, and backend readiness.
+      description: Describe only new user-visible behavior, settings, and defaults.
       value: |
         What should this AI service do?
 
@@ -93,10 +93,6 @@ body:
 
         Default values:
         -
-
-        Backend availability / support signal:
-
-        Backend readiness: Ready / Not ready / Unknown
 
         Unknown / blocker:
     validations:
@@ -108,7 +104,7 @@ body:
       label: Support / pricing differences
       description: Fill only differences from the reference service. Use "Same as reference" when unchanged.
       value: |
-        Supported products / camera rule:
+        Product / account limitation:
 
         Firmware or account limitation:
 
@@ -149,17 +145,11 @@ body:
     id: event_push_deeplink
     attributes:
       label: Event / push / deeplink
-      description: Fill only when this service has events, push behavior, or deeplink requirements.
+      description: Fill only special push or Android deeplink requirements. Event ids and names are already covered above.
       value: |
-        Event behavior:
+        Push behavior:
 
-        Event image required? Yes / No / Same as reference / Unknown:
-
-        Push image required? Yes / No / Same as reference / Unknown:
-
-        Android deeplink URL:
-
-        Web entry URL:
+        Deeplink URL:
 
         Destination page:
 
@@ -171,18 +161,22 @@ body:
     id: copy_assets
     attributes:
       label: Copy / assets
-      description: Provide user-facing copy, translation source, required image purposes, and missing items. Do not provide local personal file paths.
+      description: Provide user-facing copy, required image purposes, and missing items. Do not provide local personal file paths.
       value: |
         User-facing copy:
         -
 
-        Translation source URL / sheet row:
+        Translation source:
+        APP 多國語系字串整理 / 翻譯更新版本
+        https://docs.google.com/spreadsheets/d/1Qvvfxq8q_ysxd9EHl0zZMpqhdAGuxFaun2iWs36sp14/edit?gid=1543369162#gid=1543369162
+        https://docs.google.com/spreadsheets/d/1cWyvIt0J4nM6uNXphoOHsmhoVbtsV1S6WhhFU7kxL90/edit?gid=1906643467#gid=1906643467
 
         Images needed by purpose:
         - Service icon:
         - Service banner:
         - Setting image:
         - Event / timeline icon:
+        - Push/event image:
 
         Missing copy or assets:
 
@@ -194,16 +188,10 @@ body:
     id: acceptance
     attributes:
       label: Acceptance and QA
-      description: Provide only PM-specific acceptance, test data, blockers, and deadlines.
+      description: Provide only PM-specific acceptance, unfinished items, and deadlines.
       value: |
         Acceptance screens / flows:
         -
-
-        QA test account:
-
-        QA test camera / SN:
-
-        Required build variant:
 
         Acceptable unfinished items:
 
