@@ -1,0 +1,271 @@
+name: AI Service Addition
+description: Request support for a new paid AI service, AI setting, or AI event flow.
+title: "[AI Service Addition] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form when PM requests a new paid AI service, AI setting page, AI event type, notification behavior, or deeplink.
+
+        PM should complete the required sections first. Engineering must complete the review section before handing the issue to Codex.
+
+  - type: input
+    id: service_display_name
+    attributes:
+      label: Service display name
+      description: User-facing service name.
+      placeholder: "大型動物偵測 / Large Animal Detection"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: service_type
+    attributes:
+      label: Service type
+      description: Select the closest service category.
+      options:
+        - Video AI
+        - Sound AI
+        - Mixed AI
+        - Account / plan only
+        - Unknown
+    validations:
+      required: true
+
+  - type: input
+    id: reference_service
+    attributes:
+      label: Reference AI service
+      description: Closest existing AI service behavior to copy.
+      placeholder: "Pet Detection / Vehicle Detection / Baby Crying Detection"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: launch_target
+    attributes:
+      label: Launch target
+      description: Where this service is expected to ship first.
+      options:
+        - staging only
+        - prod release
+        - POC
+        - limited account
+        - Unknown
+    validations:
+      required: true
+
+  - type: textarea
+    id: service_ids
+    attributes:
+      label: PID / EID
+      description: Provide every service id and event id. Use Unknown when PM is unsure.
+      value: |
+        pid:
+
+        eid list:
+        -
+
+        Does this replace an old eid? Yes / No / Unknown:
+        Old eid compatibility required? Yes / No / Unknown:
+        Event display names:
+        -
+
+        Notes:
+    validations:
+      required: true
+
+  - type: textarea
+    id: api_contract
+    attributes:
+      label: API / payload contract
+      description: Provide backend fields, targets, payload examples, defaults, and fallback behavior.
+      value: |
+        vca_stat / service status field:
+        service detail endpoint / target:
+        read fields:
+        write fields:
+        write payload example:
+        default value when backend returns empty:
+        backend readiness: Ready / Not ready / Unknown
+        API notes:
+    validations:
+      required: true
+
+  - type: textarea
+    id: support_rule
+    attributes:
+      label: Support rule
+      description: Describe product, firmware, account, plan, or backend support constraints.
+      value: |
+        Backend support flag:
+        Supported products / SN prefixes:
+        Firmware rule:
+        Account limitation:
+        Subscription camera selection filter:
+        Setting page visibility rule:
+        Unsupported behavior:
+        Unknown / blocker:
+    validations:
+      required: true
+
+  - type: textarea
+    id: pricing_trial
+    attributes:
+      label: Pricing / trial
+      description: Define pricing, free trial, plan copy, and reference plan.
+      value: |
+        Monthly price:
+        Yearly price:
+        Free trial supported? Yes / No / Same as reference / Unknown:
+        Reference pricing service:
+        Upgrade / subscription entry behavior:
+        Notes:
+    validations:
+      required: true
+
+  - type: textarea
+    id: ui_scope
+    attributes:
+      label: UI scope
+      description: Identify all service pages, setting pages, dialogs, and phone/pad requirements.
+      value: |
+        Service list / landing page: Yes / No / Same as reference / Unknown
+        Service detail / read more page: Yes / No / Same as reference / Unknown
+        Smart AI setting page: Yes / No / Same as reference / Unknown
+        Setting detail page: Yes / No / Same as reference / Unknown
+        Custom settings and options:
+        -
+
+        Dialog style reference:
+        Phone support:
+        Pad support:
+        Dark mode requirements:
+        UI order / placement:
+        Notes:
+    validations:
+      required: true
+
+  - type: textarea
+    id: event_flow
+    attributes:
+      label: Event flow
+      description: Fill this even when the service has no event. Use Not applicable when appropriate.
+      value: |
+        Event list display:
+        Timeline display:
+        Timeline icons needed:
+        Event filter dialog:
+        All Events:
+        Event export:
+        Player title:
+        Event image support:
+        No-event / placeholder behavior:
+        Not applicable reason:
+    validations:
+      required: true
+
+  - type: textarea
+    id: notification_deeplink
+    attributes:
+      label: Notification / deeplink
+      description: Define push notification, image display, channel naming, and web/app deeplink behavior.
+      value: |
+        FCM notification name:
+        FCM channel name:
+        Push image support? Yes / No / Same as reference / Unknown:
+        Android deeplink URL:
+        iOS deeplink URL:
+        Web entry URL:
+        Destination page:
+        Notes:
+    validations:
+      required: true
+
+  - type: textarea
+    id: strings_assets
+    attributes:
+      label: Strings / assets
+      description: List resource names, source files, languages, and missing items.
+      value: |
+        Required string keys:
+        -
+
+        Languages provided:
+        -
+
+        Missing translations:
+        -
+
+        Required asset names:
+        -
+
+        Asset source folder / URL:
+        Assets allowed to be placeholder? Yes / No / Unknown:
+        Notes:
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance and QA
+      description: Provide enough context for engineering and Codex verification planning.
+      value: |
+        PM acceptance screens:
+        QA test account:
+        QA test camera / SN:
+        Required test flows:
+        Required build variant:
+        Acceptable unfinished items:
+        Release deadline:
+    validations:
+      required: true
+
+  - type: textarea
+    id: engineering_review
+    attributes:
+      label: Engineering review
+      description: Engineering must complete this before Codex implementation.
+      value: |
+        Final tier: Service-only / Settings-service / Full-event-service
+        Reference implementation:
+        Risk level: Low / Medium / High
+        Phone/pad required: Phone only / Pad only / Both
+        API readiness:
+        Event chain required: Yes / No
+        Push/deeplink required: Yes / No
+        Asset/string readiness:
+        Codex execution order:
+        Manual QA owner:
+        Blockers / missing PM info:
+    validations:
+      required: false
+
+  - type: textarea
+    id: codex_prompt
+    attributes:
+      label: Codex prompt
+      description: Complete this after engineering review, then paste it into Codex.
+      value: |
+        請依照此 GitHub Issue 新增 AI 服務支援。
+
+        AI 服務：
+        - Service name:
+        - Service type:
+        - Reference service:
+        - pid:
+        - eid:
+        - Tier:
+
+        請先讀取：
+        - AGENTS.md
+        - docs/agent-workflows/ai-service-addition-intake.md
+        - docs/agent-workflows/ai-service-addition-tiers.md
+        - docs/agent-workflows/ai-service-addition-validation.md
+
+        請先做非修改性的盤點，列出本次會碰到的檔案群、事件鏈路、API 風險、素材與多國語缺口。
+        確認範圍後再進行實作。
+        實作後執行對應 build、static check 或 manual verification，最後產出變更摘要或 change report。
+    validations:
+      required: false
