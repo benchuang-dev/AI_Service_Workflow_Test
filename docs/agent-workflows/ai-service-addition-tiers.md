@@ -2,7 +2,7 @@
 
 本文件定義 SpotCam 新增付費 AI 方案的三級 playbook。收到 `AI Service Addition` issue 後，工程應先用本文件判斷級別，再決定 Codex 盤點、實作與驗證範圍。
 
-此 workflow 只規範分級與檢查範圍，不要求每次修改所有列出的功能。實作時仍應依 issue、參考服務與實際搜尋結果縮小範圍。
+此 workflow 只規範分級與檢查範圍，不要求 PM 在 issue 內重複填寫所有固定規則。實作時由工程與 Codex 依 issue、參考服務、final tier 與實際搜尋結果縮小範圍。
 
 每個 tier 的最低驗證要求、證據紀錄與 AI 服務新增 change report 矩陣，請接著使用 `docs/agent-workflows/ai-service-addition-validation.md`。
 
@@ -30,7 +30,7 @@
 
 4. PM 欄位不完整時，不要猜。
    - 在 issue 的 `Blockers / missing PM info` 標記 missing spec。
-- 無法判斷後端行為、事件或支援條件時，先以較高風險處理，但不要實作臆測行為。
+   - 無法判斷後端行為、事件或支援條件時，先以較高風險處理，但不要實作臆測行為。
 
 ## Tier 1: Service-only
 
@@ -50,11 +50,8 @@
 - Service type。
 - Reference AI service。
 - `pid`。
-- 價格與試用規則。
-- 支援 camera 篩選規則。
-- 服務頁 icon、banner、文案與多國語。
-- Phone / Pad 是否都要顯示。
-- Deeplink 是否需要。
+- 和參考服務不同的價格、試用、支援 camera 篩選或 deeplink。
+- 使用者文案與素材用途；語言覆蓋與 resource name 由工程 review / Codex 依固定規則補上。
 
 ### Required Discovery
 
@@ -97,11 +94,11 @@ rg -n "deeplink|mobile_vca|AIService|Vca" app/src/main/java app/src/main/res
 
 除 `Service-only` 欄位外，PM / 工程還必須補齊：
 
-- 設定頁名稱、排序與入口條件。
+- 和參考服務不同的設定頁名稱、排序與入口條件。
 - 每個設定項的顯示文字、選項、預設值與儲存行為。
 - 後端是否已支援讀取、儲存與空值 fallback；實際 API read/write 欄位、target、payload 由工程 review 補上。
 - Dialog 樣式參考與深色模式要求。
-- Phone / Pad 是否都要支援。
+- Phone / Pad 是否有差異；若無差異，預設由工程依參考服務檢查 Both。
 
 ### Required Discovery
 
@@ -147,11 +144,8 @@ rg -n "<reference-setting-string>|CustomDialog|InfoDialog" app/src/main/java app
 
 - 每個 `eid` 的動物/物件/聲音類型與顯示文字。
 - 舊 `eid` 是否要保留相容。
-- Timeline icon 設計、素材檔案或每種事件需要的圖示用途；實際 `t/m/b` resource name 由工程 review 補上。
-- 事件篩選是否拆成多個項目。
-- FCM channel/name、推播圖片與圖片缺失 fallback。
-- Deeplink URL 與目的頁。
-- 多國語翻譯來源與缺漏語言。
+- 事件圖片、Timeline icon、推播圖片或 deeplink 是否有本服務特有需求。
+- 翻譯來源 URL、素材用途與缺漏項目；固定語言規則、事件篩選、All Events、export、player title 與 FCM mapping 由工程 review / Codex 推導。
 
 ### Required Discovery
 
@@ -193,4 +187,4 @@ rg -n "<reference-event-string>|<reference-icon>" app/src/main/res
 - 有事件列表、Timeline icon、事件篩選、All Events、export、FCM 圖片與 deeplink。
 - 有素材、多國語與後端 support flag。
 
-這類需求必須先在 issue 明確列出事件集合、事件文字、Timeline icon、推播圖片、deeplink、缺素材與缺翻譯，工程補完 review 後才能交給 Codex 實作。
+這類需求必須先在 issue 明確列出事件集合、事件文字、本服務特有 UI / 推播 / deeplink / 素材需求與缺漏項目。事件篩選、All Events、export、player title、FCM mapping、語言覆蓋與 resource name 由工程 review / Codex 依 workflow 推導。

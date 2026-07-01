@@ -9,6 +9,7 @@
 - 驗證必須跟 tier 對齊；`Full-event-service` 不能只用 `Service-only` 的驗證結案。
 - Phone / Pad 預設要對稱檢查；若 issue 指定單端支援，report 要明確寫出。
 - `pid` 是服務/方案 id，`eid` 是事件 id；兩者即使數字相同也不能混用。
+- PM issue 只記錄新需求差異；標準驗證範圍由 final tier 與 reference service 推導，不要求 PM 逐項列出。
 - 後端行為或 API 未 ready 時，不用測試結果補洞；應在 blocker / 風險列出缺少資訊。
 - 未跑的驗證要寫 `未執行` 與原因，不可寫成已通過。
 - 缺正式素材或翻譯時，要列出素材用途、placeholder resource name 與缺少語言。
@@ -156,6 +157,7 @@ AI 服務新增完成後，如需要產出報告，report 必須包含：
 - AI 服務名稱、服務類型、`pid` 與 `eid`。
 - 分級：`Service-only` / `Settings-service` / `Full-event-service`。
 - 參考 AI 服務與比照依據。
+- PM issue 中明確列出的新需求差異。
 - 改動摘要。
 - 後端行為、API contract 與支援規則。
 - 改動檔案表。
