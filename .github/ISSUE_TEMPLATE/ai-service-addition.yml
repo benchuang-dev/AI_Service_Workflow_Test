@@ -5,216 +5,176 @@ body:
   - type: markdown
     attributes:
       value: |
-        Use this form for the new requirement details that are unique to this AI service.
+        Fill the PM sections with the product requirements for this AI service. Keep implementation details, backend fields, payloads, resource names, and standard app coverage for the Engineering review section.
 
-        PM does not need to list repeated app rules such as default language coverage, standard event-list coverage, standard phone/pad checks, or resource names. Engineering will review the issue and Codex will derive implementation details from the reference service and workflow docs.
-
-  - type: input
-    id: service_display_name
+  - type: textarea
+    id: pm_service
     attributes:
-      label: Service display name
-      description: User-facing service name.
-      placeholder: "大型動物偵測 / Large Animal Detection"
-    validations:
-      required: true
-
-  - type: dropdown
-    id: service_type
-    attributes:
-      label: Service type
-      description: Select the closest AI service category.
-      options:
-        - Video AI
-        - Sound AI
-        - Mixed AI
-        - Account / plan only
-        - Unknown
+      label: "PM 1. 新增 AI 服務"
+      description: Basic service identity, reference service, placement, and pricing expectation.
+      value: |
+        服務名稱：
+        Service type：
+        pid：
+        Reference AI service：
+        服務入口：
+        服務介紹頁：
+        排序：
+        價格 / 訂閱 / 免費試用：
     validations:
       required: true
 
   - type: textarea
-    id: reference_service
+    id: pm_settings
     attributes:
-      label: Reference AI service
-      description: Name the existing AI service to copy, and only mention differences.
+      label: "PM 2. 智慧 AI 設定"
+      description: Setting page requirements and new user-visible settings.
       value: |
-        Reference service:
-
-        Copy from reference:
+        是否新增智慧 AI 設定頁：
+        設定頁排序：
+        Reference AI setting：
+        新增設定項：
         -
 
-        Differences from reference:
+        其他設定：
+        特殊 UI：
         -
-    validations:
-      required: true
 
-  - type: dropdown
-    id: launch_target
-    attributes:
-      label: Launch target
-      description: Where this service is expected to ship first.
-      options:
-        - staging only
-        - prod release
-        - POC
-        - limited account
-        - Unknown
+        Phone / Pad：
     validations:
       required: true
 
   - type: textarea
-    id: ids_events
+    id: pm_event_spec
     attributes:
-      label: Service ID / events
-      description: Provide official pid/eid values and event display names. Do not include temporary development-only ids.
+      label: "PM 3. 事件規格"
+      description: Official event ids and display names only.
       value: |
-        pid:
-
-        Event ids and names:
+        是否有事件：
+        eid：
         -
-
-        Replaces a released old eid? Yes / No / Unknown:
-        Old eid compatibility required? Yes / No / Not applicable / Unknown:
-
-        Notes:
     validations:
       required: true
 
   - type: textarea
-    id: behavior_settings
+    id: pm_event_display
     attributes:
-      label: New behavior / settings
-      description: Describe only new user-visible behavior, settings, and defaults.
+      label: "PM 4. 事件顯示"
+      description: Event-related surfaces that should show this AI event.
       value: |
-        What should this AI service do?
-
-        User-visible settings:
-        -
-
-        Default values:
-        -
-
-        Unknown / blocker:
+        事件列表：
+        Timeline：
+        事件篩選：
+        All Events：
+        匯出事件：
+        播放器標題：
+        推播 channel / name：
     validations:
       required: true
 
   - type: textarea
-    id: support_pricing
+    id: pm_push_deeplink
     attributes:
-      label: Support / pricing differences
-      description: Fill only differences from the reference service. Use "Same as reference" when unchanged.
+      label: "PM 5. 推播與 Deeplink"
+      description: Push image and Android deeplink requirements.
       value: |
-        Product / account limitation:
-
-        Firmware or account limitation:
-
-        Pricing:
-
-        Free trial:
-
-        Subscription / upgrade behavior:
-
-        Unsupported behavior:
-
-        Notes:
-    validations:
-      required: true
-
-  - type: textarea
-    id: ui_requirements
-    attributes:
-      label: UI requirements
-      description: Describe new screens, placement, custom controls, and special UI requirements.
-      value: |
-        Service entry / placement:
-
-        Detail page / description page:
-
-        Setting page:
-
-        Custom controls or dialogs:
-        -
-
-        Phone / Pad differences:
-
-        Special UI notes:
-    validations:
-      required: true
-
-  - type: textarea
-    id: event_push_deeplink
-    attributes:
-      label: Event / push / deeplink
-      description: Fill only special push or Android deeplink requirements. Event ids and names are already covered above.
-      value: |
-        Push behavior:
-
-        Deeplink URL:
-
-        Destination page:
-
-        Special notes:
+        推播圖片：
+        Deeplink：
+        Deeplink 目的頁：
     validations:
       required: false
 
   - type: textarea
-    id: copy_assets
+    id: pm_copy
     attributes:
-      label: Copy / assets
-      description: Provide user-facing copy, required image purposes, and missing items. Do not provide local personal file paths.
+      label: "PM 6. 文案"
+      description: Write one copy item per line so engineering can count required strings clearly.
       value: |
-        User-facing copy:
-        -
+        服務名稱：
+        服務說明：
+        事件名稱 1：
+        事件名稱 2：
+        事件名稱 3：
+        事件名稱 4：
+        設定入口：
+        設定項 1：
+        設定項 1 說明：
+        設定項 1 選項：
+        設定項 2：
+        設定項 2 選項：
 
         Translation source:
         APP 多國語系字串整理 / 翻譯更新版本
         https://docs.google.com/spreadsheets/d/1Qvvfxq8q_ysxd9EHl0zZMpqhdAGuxFaun2iWs36sp14/edit?gid=1543369162#gid=1543369162
         https://docs.google.com/spreadsheets/d/1cWyvIt0J4nM6uNXphoOHsmhoVbtsV1S6WhhFU7kxL90/edit?gid=1906643467#gid=1906643467
-
-        Images needed by purpose:
-        - Service icon:
-        - Service banner:
-        - Setting image:
-        - Event / timeline icon:
-        - Push/event image:
-
-        Missing copy or assets:
-
-        Notes:
     validations:
       required: true
 
   - type: textarea
-    id: acceptance
+    id: pm_assets
     attributes:
-      label: Acceptance and QA
-      description: Provide only PM-specific acceptance, unfinished items, and deadlines.
+      label: "PM 7. 素材"
+      description: Write one asset purpose per line so engineering can count required images clearly. Do not provide local personal file paths.
       value: |
-        Acceptance screens / flows:
-        -
-
-        Acceptable unfinished items:
-
-        Release deadline:
+        Service icon：
+        Service banner：
+        Setting image：
+        Event / Timeline icon 1：
+        Event / Timeline icon 2：
+        Event / Timeline icon 3：
+        Event / Timeline icon 4：
+        Push / event image：
+        Missing assets：
     validations:
       required: true
 
-  - type: textarea
-    id: engineering_review
+  - type: markdown
     attributes:
-      label: Engineering review
-      description: Engineering must complete this before Codex implementation.
       value: |
-        Final tier: Service-only / Settings-service / Full-event-service
-        Reference implementation:
-        Risk level: Low / Medium / High
-        Phone/pad required: Phone only / Pad only / Both
-        Derived standard coverage:
-        Exact API / payload notes:
-        Exact resource names:
-        Codex execution order:
-        Manual QA owner:
-        Blockers / missing PM info:
+        ---
+        The following sections are for Engineering / Developer review before Codex implementation.
+
+  - type: textarea
+    id: engineering_support
+    attributes:
+      label: "Engineering 1. 支援條件"
+      description: Developer-owned support rules derived from backend, product, firmware, and subscription behavior.
+      value: |
+        後端支援欄位：
+        App 是否硬編 SN / FW：
+        訂閱 / 免費試用選 camera 篩選：
+        設定頁顯示條件：
+    validations:
+      required: false
+
+  - type: textarea
+    id: engineering_api
+    attributes:
+      label: "Engineering 2. API / Payload"
+      description: Developer-owned API and payload details.
+      value: |
+        服務狀態來源：
+        設定讀取來源：
+        設定寫入 target：
+        設定 payload：
+        預設值 fallback：
+    validations:
+      required: false
+
+  - type: textarea
+    id: engineering_implementation
+    attributes:
+      label: "Engineering 3. 實作推導"
+      description: Engineering review outcome before handing the issue to Codex.
+      value: |
+        Final tier：
+        Reference implementation：
+        Phone / Pad scope：
+        Standard event coverage：
+        Resource naming：
+        Missing info / blockers：
+        Codex execution order：
+        Manual QA owner：
     validations:
       required: false
 
@@ -226,22 +186,13 @@ body:
       value: |
         請依照此 GitHub Issue 新增 AI 服務支援。
 
-        AI 服務：
-        - Service name:
-        - Service type:
-        - Reference service:
-        - pid:
-        - eid:
-        - Tier:
-
         請先讀取：
         - AGENTS.md
         - docs/agent-workflows/ai-service-addition-intake.md
         - docs/agent-workflows/ai-service-addition-tiers.md
         - docs/agent-workflows/ai-service-addition-validation.md
 
-        請先做非修改性的盤點，從 reference service 與 workflow docs 推導標準改動範圍，並列出本次新需求特有的檔案群、事件鏈路、API 風險、素材與多國語缺口。
-        若 issue 只提供使用者視角的後端行為、文字或素材用途，請由工程 review 與程式碼盤點決定實際 endpoint、payload、resource name 與 drawable name。
+        請先做非修改性的盤點，從 PM 填寫區、Engineering review、reference service 與 workflow docs 推導標準改動範圍，並列出本次新需求特有的檔案群、事件鏈路、API 風險、素材與多國語缺口。
         確認範圍後再進行實作。
         實作後執行對應 build、static check 或 manual verification，最後產出變更摘要或 change report。
     validations:
